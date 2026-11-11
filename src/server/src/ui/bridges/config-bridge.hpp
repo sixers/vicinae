@@ -5,6 +5,7 @@
 #include "service-registry.hpp"
 #include "services/keybinding/keybinding-service.hpp"
 #include <QColor>
+#include <QList>
 #include <QObject>
 #include <QVariant>
 
@@ -138,6 +139,13 @@ public:
 
   Q_INVOKABLE static QColor withAlpha(const QColor &c, qreal alpha) {
     return QColor::fromRgbF(c.redF(), c.greenF(), c.blueF(), alpha);
+  }
+
+  Q_INVOKABLE static QList<QColor> gradientWithAlpha(QList<QColor> stops, qreal alpha) {
+    for (auto &stop : stops) {
+      stop = withAlpha(stop, alpha);
+    }
+    return stops;
   }
 
 private:
