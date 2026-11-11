@@ -38,6 +38,7 @@ private:
   Q_PROPERTY(bool activateOnSingleClick READ activateOnSingleClick NOTIFY changed)
   Q_PROPERTY(bool blurEnabled READ blurEnabled NOTIFY changed)
   Q_PROPERTY(bool floatingStatusBar READ floatingStatusBar NOTIFY changed)
+  Q_PROPERTY(bool layerShellBackdrop READ layerShellBackdrop NOTIFY changed)
   Q_PROPERTY(QString windowMaterial READ windowMaterial NOTIFY changed)
   Q_PROPERTY(QString popupMaterial READ popupMaterial NOTIFY changed)
   Q_PROPERTY(QVariant searchBarDivider READ searchBarDivider NOTIFY changed)
@@ -129,6 +130,7 @@ public:
                                                    platform::supports(platform::Capability::WindowMaterial)));
   }
   bool floatingStatusBar() const { return cfg().launcherWindow.floatingStatusBar; }
+  bool layerShellBackdrop() const { return cfg().launcherWindow.layerShell.backdrop; }
 
   // Layout overrides are undefined in QML when unset, so that the platform appearance keeps its own metrics.
   QVariant searchBarDivider() const { return optional(cfg().launcherWindow.searchBar.divider); }

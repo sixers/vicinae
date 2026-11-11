@@ -30,6 +30,7 @@ private:
   Q_PROPERTY(QColor statusBarBackground READ statusBarBackground NOTIFY changed)
   Q_PROPERTY(QColor mainWindowBorder READ mainWindowBorder NOTIFY changed)
   Q_PROPERTY(QColor mainWindowOuterBorder READ mainWindowOuterBorder NOTIFY changed)
+  Q_PROPERTY(QColor mainWindowBackdrop READ mainWindowBackdrop NOTIFY changed)
   Q_PROPERTY(QList<QColor> mainWindowBorderGradient READ mainWindowBorderGradient NOTIFY changed)
   Q_PROPERTY(qreal mainWindowBorderGradientAngle READ mainWindowBorderGradientAngle NOTIFY changed)
   Q_PROPERTY(QColor inputBackground READ inputBackground NOTIFY changed)
@@ -93,6 +94,7 @@ public:
   QColor statusBarBackground() const { return resolve(SemanticColor::StatusBarBackground); }
   QColor mainWindowBorder() const { return resolve(SemanticColor::MainWindowBorder); }
   QColor mainWindowOuterBorder() const { return resolve(SemanticColor::MainWindowOuterBorder); }
+  QColor mainWindowBackdrop() const { return resolve(SemanticColor::MainWindowBackdrop); }
   QList<QColor> mainWindowBorderGradient() const {
     auto gradient = ThemeService::instance().theme().resolveGradient(SemanticColor::MainWindowBorder);
     return gradient ? QList<QColor>(gradient->stops.begin(), gradient->stops.end()) : QList<QColor>{};
