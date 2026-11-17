@@ -1,8 +1,8 @@
 #pragma once
 #include <cstdint>
+#include <deque>
 #include <netinet/in.h>
 #include <memory>
-#include <optional>
 #include <sys/syscall.h>
 #include <unistd.h>
 #include <wayland-client-core.h>
@@ -29,7 +29,7 @@ private:
   std::unique_ptr<ExtDataControlManager> _dcm;
   std::unique_ptr<WaylandSeat> _seat;
   std::unique_ptr<ExtDataDevice> m_device;
-  std::optional<clipboard_proto::Selection> m_ownSelection;
+  std::deque<clipboard_proto::Selection> m_ownSelections;
 
   void global(WaylandRegistry &reg, uint32_t name, const char *interface, uint32_t version) override;
   void selection(ExtDataDevice &device, ExtDataOffer &offer) override;

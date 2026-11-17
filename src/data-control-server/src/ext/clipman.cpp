@@ -2,6 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include <iomanip>
+#include <optional>
 #include <string>
 #include <ranges>
 #include <utility>
@@ -35,10 +36,15 @@ void ExtClipman::primarySelection(ExtDataDevice &, ExtDataOffer *offer) {
            offer ? Selection::buildPrimarySelection(*offer) : clipboard_proto::Selection{});
 }
 
-// The compositor echoes a selection we set back to our own device. Reading that offer would block on a
-// pipe only this process can fill, so report what we wrote instead of receiving it.
+// The compositor echoes every selection we set back to our own device, in the order we set them. Reading
+// such an offer would block on a pipe only this process can fill, so report what we wrote instead.
 void ExtClipman::selection(ExtDataDevice &, ExtDataOffer &offer) {
-  auto own = std::exchange(m_ownSelection, std::nullopt);
+  std::optional<clipboard_proto::Selection> own;
+
+  if (!m_ownSelections.empty()) {
+    own = std::move(m_ownSelections.front());
+    m_ownSelections.pop_front();
+  }
 
   if (isatty(STDOUT_FILENO)) {
     if (!own) Selection::printDebug(Selection::filterMimes(offer.mimes()), offer, "SELECTION");
@@ -58,7 +64,7 @@ void ExtClipman::selection(ExtDataDevice &, ExtDataOffer &offer) {
 }
 
 void ExtClipman::setClipboard(const clipboard_proto::Selection &selection) {
-  m_ownSelection = selection;
+  m_ownSelections.emplace_back(selection);
   ClipboardWriter::setSelection(_dcm->raw(), m_device->raw(), selection);
   flush();
 }
