@@ -19,7 +19,9 @@ enum SemanticColor : std::uint8_t {
   MainBackground,
   MainWindowBorder,
   MainWindowOuterBorder,
+  MainWindowBackdrop,
   SettingsWindowBorder,
+  MainWindowShadowColor,
 
   StatusBarBackground,
 

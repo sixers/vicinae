@@ -29,6 +29,7 @@ private:
   Q_PROPERTY(QColor statusBarBackground READ statusBarBackground NOTIFY changed)
   Q_PROPERTY(QColor mainWindowBorder READ mainWindowBorder NOTIFY changed)
   Q_PROPERTY(QColor mainWindowOuterBorder READ mainWindowOuterBorder NOTIFY changed)
+  Q_PROPERTY(QColor mainWindowBackdrop READ mainWindowBackdrop NOTIFY changed)
   Q_PROPERTY(QColor inputBackground READ inputBackground NOTIFY changed)
   Q_PROPERTY(QColor inputBorder READ inputBorder NOTIFY changed)
   Q_PROPERTY(QColor inputBorderFocus READ inputBorderFocus NOTIFY changed)
@@ -57,6 +58,7 @@ private:
   Q_PROPERTY(QColor loadingBar READ loadingBar NOTIFY changed)
   Q_PROPERTY(QColor buttonPrimaryBg READ buttonPrimaryBg NOTIFY changed)
   Q_PROPERTY(QColor buttonPrimaryHoverBg READ buttonPrimaryHoverBg NOTIFY changed)
+  Q_PROPERTY(QColor csdShadowColor READ csdShadowColor NOTIFY changed)
   Q_PROPERTY(qreal surfaceOpacity READ surfaceOpacity CONSTANT)
   Q_PROPERTY(qreal regularFontSize READ regularFontSize NOTIFY changed)
   Q_PROPERTY(qreal smallerFontSize READ smallerFontSize NOTIFY changed)
@@ -90,6 +92,7 @@ public:
   QColor statusBarBackground() const { return resolve(SemanticColor::StatusBarBackground); }
   QColor mainWindowBorder() const { return resolve(SemanticColor::MainWindowBorder); }
   QColor mainWindowOuterBorder() const { return resolve(SemanticColor::MainWindowOuterBorder); }
+  QColor mainWindowBackdrop() const { return resolve(SemanticColor::MainWindowBackdrop); }
   QColor inputBackground() const { return resolve(SemanticColor::InputBackground); }
   QColor inputBorder() const { return resolve(SemanticColor::InputBorder); }
   QColor inputBorderFocus() const { return resolve(SemanticColor::InputBorderFocus); }
@@ -115,6 +118,7 @@ public:
   QColor loadingBar() const { return resolve(SemanticColor::LoadingBar); }
   QColor buttonPrimaryBg() const { return resolve(SemanticColor::ButtonPrimaryBackground); }
   QColor buttonPrimaryHoverBg() const { return resolve(SemanticColor::ButtonPrimaryHoverBackground); }
+  QColor csdShadowColor() const { return resolve(SemanticColor::MainWindowShadowColor); }
 
   static constexpr qreal surfaceOpacity() { return 0.6; }
   qreal regularFontSize() const { return ThemeService::instance().pointSize(TextRegular); }

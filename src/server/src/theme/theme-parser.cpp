@@ -20,7 +20,9 @@ static const std::vector<std::pair<std::string, SemanticColor>> RECOGNIZED_KEYS 
     {"shortcut.border", SemanticColor::ShortcutIndicatorBorder},
 
     {"main_window.border", SemanticColor::MainWindowBorder},
+    {"main_window.shadow", SemanticColor::MainWindowShadowColor},
     {"main_window.outer_border", SemanticColor::MainWindowOuterBorder},
+    {"main_window.backdrop", SemanticColor::MainWindowBackdrop},
     {"main_window.footer.background", SemanticColor::StatusBarBackground},
     {"settings_window.border", SemanticColor::SettingsWindowBorder},
 
